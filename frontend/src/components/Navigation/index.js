@@ -26,7 +26,7 @@ const sessionUser = useSelector((state) => state.session.user);
       <ul className="pure-menu-list" style={{ listStyleType: "none" }}>
         <li className="pure-menu-item pure-menu-selected">
           <NavLink className="pure-menu-link" exact to="/">
-            Home
+            <img src="../../public/img/mysound.png" alt="home" />
           </NavLink>
           {/* <li className="pure-menu-link">{isLoaded && sessionLinks}</li> */}
           <li className="pure-menu-item pure-menu-selected pure-menu-has-children pure-menu-allow-hover">
@@ -35,8 +35,12 @@ const sessionUser = useSelector((state) => state.session.user);
           <li className="pure-menu-item pure-menu-selected">
             {!sessionUser && (
               <>
-                <LoginFormModal className="pure-menu-link" />
-                <SignupFormModal className="pure-menu-link" />
+                <div>
+                  <LoginFormModal className="pure-menu-item pure-menu-link" />
+                </div>
+                <div>
+                  <SignupFormModal className="pure-menu-item pure-menu-link" />
+                </div>
               </>
             )}
           </li>
