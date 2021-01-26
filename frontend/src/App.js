@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import Upload from "./components/Upload/Upload";
+import Splash from "./components/Splash";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,8 +15,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div >
       <Navigation isLoaded={isLoaded} />
+      <Splash />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
@@ -32,7 +34,7 @@ function App() {
           </Route>
       </Switch>
       )}
-      </>
+      </div>
   );
 }
 
