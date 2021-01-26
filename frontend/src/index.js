@@ -14,6 +14,11 @@ import * as sessionActions from './store/session'
 // variable to access store configuration
 const store = configureStore();
 
+const style = {
+  fontFamily: 'interstate',
+  fontWeight: 'lighter',
+}
+
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
   // during development, call restoreCSRF before defining root.
@@ -25,10 +30,10 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     // pass store config to provider for use in app
-    <Provider store={store}>
-      <ModalProvider>
+    <Provider store={store} style={style}>
+      <ModalProvider style={style}>
         <BrowserRouter>
-          <App />
+          <App style={style} />
         </BrowserRouter>
       </ModalProvider>
     </Provider>

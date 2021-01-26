@@ -1,40 +1,68 @@
-// import {useState} from 'react'
-// import { GiphyFetch } from "@giphy/js-fetch-api";
-// import {Gif} from '@giphy/react-components'
+import {useState, useEffect} from 'react'
+import { GiphyFetch } from "@giphy/js-fetch-api";
+import {Gif} from '@giphy/react-components'
+import './Splash.css'
 // import { useAsync } from "react-async-hook";
-// const key = `${process.env.REACT_APP_GIPHY_API_KEY}`;
-// // console.log(key);
-// const gf = new GiphyFetch(key);
+
 
 
 function Splash() {
-  // const [gif, setGif] = useState(<IGif gif={gif} />)
-  // const data = useAsync(async () => {
-  //   const { data } = await gf.gif('LQv4IGmdZAF7TmMJEa')
-  //   console.log('async',data)
-  //   // setGif(data)
-  //   return data
-  // }, [])
-  // console.log('return',data)
+  const key = `${process.env.REACT_APP_GIPHY_API_KEY}`;
+  const gf = new GiphyFetch(key);
+  const [gif, setGif] = useState(null)
+  useEffect(() => {
+    (async () => {
 
+      const { data } = await gf.gif("LQv4IGmdZAF7TmMJEa");
+      console.log("async", data);
+      setGif(data)
+      return data;
+    })()
+  },[])
   return (
     <>
       <div id="splash-wrap">
-        {/* <Gif gif={data}/> */}
-        <img
+        {gif && (
+          <Gif
+            style={{
+              objectFit: "center",
+              width: "100%",
+              height: "100% ",
+              padding: 0,
+              margin: "0 16% 0 16%",
+              zIndex: "-5",
+            }}
+            gif={gif}
+          />
+        )}
+        <div id="splash-title">
+          <h2>Welcome to</h2>
+          <h1>mySound</h1>
+        </div>
+        {/* <img
           src="img/synchani.gif"
           alt="oscGIf"
           style={{
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-            backgroundSize: "cover",
+            objectFit: "cover",
             width: "100%",
             height: "100% ",
             padding: 0,
             margin: 'auto',
+            zIndex: '-5'
           }}
-        />
-        <h1 id="splash-title">SPLASH!</h1>
+        /> */}
+      </div>
+      <div id="splash-deets" className="pure-g">
+        <div className="pure-u-2-5">
+          <p style={{ marginTop: "0%", paddingTop: "3px" }}>
+            producer and songwriters community
+          </p>
+        </div>
+        <div className="pure-u-3-5">
+          <p style={{ marginBottom: "0%", paddingBottom: "3px" }}>
+            refine your sound
+          </p>
+        </div>
       </div>
     </>
   );

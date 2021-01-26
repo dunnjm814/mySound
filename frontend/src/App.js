@@ -7,7 +7,7 @@ import ProfilePage from "./components/ProfilePage";
 import Upload from "./components/Upload/Upload";
 import Splash from "./components/Splash";
 
-function App() {
+function App({style}) {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div >
+    <div style={style}>
       <Navigation isLoaded={isLoaded} />
       <Splash />
       {isLoaded && (
@@ -32,7 +32,8 @@ function App() {
           <Route path='/'>
             <h1>404 boiiii</h1>
           </Route>
-      </Switch>
+        </Switch>
+        
       )}
       </div>
   );
