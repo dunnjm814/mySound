@@ -35,7 +35,7 @@ function SignupFormPage() {
       onSubmit={onSubmit}
       className="pure-form pure-form-stacked login-form"
     >
-      <ul>
+      <ul className='errors'>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
@@ -69,7 +69,7 @@ function SignupFormPage() {
         onChange={(e) => setConfirmPassword(e.target.value)}
         required
       />
-      <button type="submit" className="submit pure-button pure-button-primary">
+      <button type="submit" id='submit' className="pure-button pure-button-primary">
         Sign Up
       </button>
     </form>

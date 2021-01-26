@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
+import Upload from "./components/Upload/Upload";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,10 +17,19 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-      <Switch>
+        <Switch>
+          <Route exact path='/'>
+
+          </Route>
         <Route path='/user/:username'>
             <ProfilePage isLoaded={isLoaded}/>
-        </Route>
+          </Route>
+          <Route path='/upload'>
+            <Upload />
+          </Route>
+          <Route path='/'>
+            <h1>404 boiiii</h1>
+          </Route>
       </Switch>
       )}
       </>
