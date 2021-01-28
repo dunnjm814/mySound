@@ -37,8 +37,6 @@ function ProfileButton({ user }) {
       profPic = user.profilePic;
     }
 
-
-
   return (
     <>
       <button
@@ -48,7 +46,8 @@ function ProfileButton({ user }) {
         style={{maxHeight: '34.3px'}}
       >
         <img
-          src={profPic}
+          src={`/${profPic}`}
+          alt='profpic'
           style={{
             height: "20px",
             width: "20px",
@@ -66,7 +65,7 @@ function ProfileButton({ user }) {
               key={user.username}
               to={`/user/${user.username}`}
             >
-              Profile {console.log(user.username)}
+              Profile
             </NavLink>
           </li>
           <li className="pure-menu-item">{user.email}</li>

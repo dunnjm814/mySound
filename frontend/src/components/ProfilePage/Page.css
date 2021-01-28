@@ -1,0 +1,46 @@
+#page-wrap{
+  display: flex;
+  flex-direction: column;
+}
+#header-wrap{
+  width: 90%;
+  margin:auto;
+  background-color: indigo;
+
+}
+#header-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+
+}
+#prof-pic{
+  max-width: 75px;
+  max-height: 75px;
+  border-radius: 50%;
+  position: relative;
+  padding: 20px;
+}
+#upload{
+  position: absolute;
+  opacity: .5;
+  margin-left: -10%;
+}
+#upload:hover{
+  opacity: .8;
+}
+.hidden{
+  display: none;
+}
+#body{
+  display: flex;
+  flex-direction: row;
+}
+#artist-info{
+  background-color: lawngreen;
+  height: 50px;
+}
+#artist-tracks{
+  background-color: lightseagreen;
+}

@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import Upload from "./components/Upload/Upload";
 import Splash from "./components/Splash";
+import FooterNav from "./components/FooterNav";
 
 function App({style}) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App({style}) {
   }, [dispatch]);
   console.log(isLoaded)
   return (
+  <>
     <div style={style}>
       <Navigation isLoaded={isLoaded} />
       {!sessionUser && <Splash />}
@@ -36,6 +38,10 @@ function App({style}) {
           </Switch>
       )}
     </div>
+      <footer style={{marginBottom: "0"}}>
+        <FooterNav />
+    </footer>
+  </>
   );
 }
 
