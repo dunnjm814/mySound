@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import * as sessionActions from "../../store/session";
 import "./Navigation.css";
 
@@ -28,7 +28,16 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    <Redirect to="/" />;
   };
+  let profPic
+    if (!user.profilePic) {
+      profPic = "img/anon.jpeg"
+    } else {
+      profPic = user.profilePic;
+    }
+
+
 
   return (
     <>
@@ -36,25 +45,35 @@ function ProfileButton({ user }) {
         id="button"
         className="profile-dropdown pure-menu-list pure-menu-link pure-button"
         onClick={openMenu}
+        style={{maxHeight: '34.3px'}}
       >
-        <i className="fas fa-user-circle" />
+        <img
+          src={profPic}
+          style={{
+            height: "20px",
+            width: "20px",
+            borderRadius: "50%",
+            padding: "2px"
+          }}
+        />
         {user.username}
       </button>
       {showMenu && (
-        <ul
-          style={{ listStyleType: "none" }}
-          className="profile-dropdown pure-menu-children"
-        >
+        <ul id="dropdown" className="profile-dropdown pure-menu-children">
           <li className="pure-menu-item">
-            <NavLink key={user.username} to={`/user/${user.username}`}>
-              Profile
+            <NavLink
+              id="profLink"
+              key={user.username}
+              to={`/user/${user.username}`}
+            >
+              Profile {console.log(user.username)}
             </NavLink>
           </li>
           <li className="pure-menu-item">{user.email}</li>
           <li>
             <button
               id="button"
-              className="pure-menu-item pure-button"
+              className="logout pure-menu-item pure-button"
               onClick={logout}
             >
               Log Out

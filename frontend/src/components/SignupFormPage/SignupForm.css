@@ -1,6 +1,7 @@
 
 .login-form{
   margin: auto;
+  max-width: 215px;
 }
 .errors{
   overflow-wrap: normal;

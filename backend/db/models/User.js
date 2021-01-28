@@ -32,6 +32,15 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
+      profilePic: {
+        type: DataTypes.STRING,
+      },
+      bannerPic: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.TEXT,
+      }
     },
     {
       defaultScope: {
@@ -51,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, profilePic, bannerPic, description } = this; // context will be the User instance
+    return { id, username, email, profilePic, bannerPic, description };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -74,17 +83,21 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope("currentUser").findByPk(user.id);
     }
   };
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ username, email, password, profilePic, bannerPic, description }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
+      profilePic,
+      bannerPic,
+      description,
     });
     return await User.scope("currentUser").findByPk(user.id);
   };
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Track, { foreignKey: 'userId' })
+    User.hasMany(models.FeedBack, {foreignKey: 'userId'})
   };
   return User;
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {Route, Switch} from 'react-router-dom'
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -9,34 +9,34 @@ import Splash from "./components/Splash";
 
 function App({style}) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restore()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
+  console.log(isLoaded)
   return (
     <div style={style}>
       <Navigation isLoaded={isLoaded} />
-      <Splash />
+      {!sessionUser && <Splash />}
       {isLoaded && (
         <Switch>
-          <Route exact path='/'>
-
+          <Route exact path="/"></Route>
+          <Route path="/user/:username">
+            <ProfilePage sessionUser={sessionUser} />
           </Route>
-        <Route path='/user/:username'>
-            <ProfilePage isLoaded={isLoaded}/>
+          <Route path="/upload">
+            <div>
+              <Upload />
+            </div>
           </Route>
-          <Route path='/upload'>
-            <Upload />
-          </Route>
-          <Route path='/'>
+          <Route path="/">
             <h1>404 boiiii</h1>
           </Route>
-        </Switch>
-        
+          </Switch>
       )}
-      </div>
+    </div>
   );
 }
 
-export default App;
+export default App

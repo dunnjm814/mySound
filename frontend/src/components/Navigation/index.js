@@ -12,6 +12,7 @@ function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
   const [active, setActive] = useState('')
   function toggle(e) {
+    //  removes active from home link click
     if (e.target.classList.contains('active')) {
       setActive('')
     }
@@ -23,7 +24,7 @@ function Navigation() {
           <NavLink id="home" className="pure-menu-link" exact to="/">
             <img
               style={{ marginTop: "3px", height: "33px", width: "33px" }}
-              src="img/mysound.png"
+              src="/img/mysound.png"
               alt="home"
             />
           </NavLink>

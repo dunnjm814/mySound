@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+// import { Upload, message, Button } from "antd";
+// import { UploadOutlined } from "@ant-design/icons";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
@@ -11,6 +13,7 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [profImg, setProfImg] = useState("img/anon.jpeg");
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -20,7 +23,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({ email, username, password })
+        sessionActions.signup({ email, username, password, profImg })
       ).catch((res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
@@ -30,12 +33,17 @@ function SignupFormPage() {
     ]);
   };
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setProfImg(file);
+  };
+
   return (
     <form
       onSubmit={onSubmit}
       className="pure-form pure-form-stacked login-form"
     >
-      <ul className='errors'>
+      <ul className="errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
@@ -69,7 +77,12 @@ function SignupFormPage() {
         onChange={(e) => setConfirmPassword(e.target.value)}
         required
       />
-      <button type="submit" id='submit' className="pure-button pure-button-primary">
+      <input style={{ overflow: "hidden" }} type="file" onChange={updateFile} />
+      <button
+        type="submit"
+        id="submit"
+        className="pure-button pure-button-primary"
+      >
         Sign Up
       </button>
     </form>

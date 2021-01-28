@@ -35,32 +35,32 @@ function Splash() {
             gif={gif}
           />
         )}
-        <div id="splash-title">
-          <h2>Welcome to</h2>
-          <h1>mySound</h1>
-        </div>
         {/* <img
           src="img/synchani.gif"
           alt="oscGIf"
           style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "100% ",
-            padding: 0,
-            margin: 'auto',
-            zIndex: '-5'
+            objectFit: "center",
+              width: "100%",
+              height: "100% ",
+              padding: 0,
+              margin: "0 16% 0 16%",
+              zIndex: "-5",
           }}
         /> */}
+        <div id="splash-title">
+          <h2>Welcome to</h2>
+          <h1>mySound</h1>
+        </div>
       </div>
       <div id="splash-deets" className="pure-g">
         <div className="pure-u-2-5">
           <p style={{ marginTop: "0%", paddingTop: "3px" }}>
-            producer and songwriters community
+            Producer and songwriters community
           </p>
         </div>
         <div className="pure-u-3-5">
           <p style={{ marginBottom: "0%", paddingBottom: "3px" }}>
-            refine your sound
+            Refine your sound
           </p>
         </div>
       </div>
