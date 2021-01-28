@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -6,44 +7,45 @@ import "./Navigation.css";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
-function Navigation({isLoaded}) {
-const sessionUser = useSelector((state) => state.session.user);
 
-// let sessionLinks;
-// if (sessionUser) {
-//   sessionLinks = <ProfileButton user={sessionUser} />;
-// } else {
-//   sessionLinks = (
-//     <>
-//       <LoginFormModal />
-//       <SignupFormModal />
-//     </>
-//   );
-// }
-
+function Navigation() {
+  const sessionUser = useSelector((state) => state.session.user);
+  const [active, setActive] = useState('')
+  function toggle(e) {
+    //  removes active from home link click
+    if (e.target.classList.contains('active')) {
+      setActive('')
+    }
+  }
   return (
-    <div className="pure-menu pure-menu-horizontal">
+    <div id="nav-bar" className="pure-menu pure-menu-horizontal">
       <ul className="pure-menu-list" style={{ listStyleType: "none" }}>
-        <li className="pure-menu-item pure-menu-selected">
-          <NavLink className="pure-menu-link" exact to="/">
-            Home
+        <li className={`pure-menu-item ${active}`} onClick={(e) => toggle(e)}>
+          <NavLink id="home" className="pure-menu-link" exact to="/">
+            <img
+              style={{ marginTop: "3px", height: "33px", width: "33px" }}
+              src="/img/mysound.png"
+              alt="home"
+            />
           </NavLink>
-          {/* <li className="pure-menu-link">{isLoaded && sessionLinks}</li> */}
-          <li className="pure-menu-item pure-menu-selected pure-menu-has-children pure-menu-allow-hover">
-            {sessionUser && <ProfileButton user={sessionUser} />}
-          </li>
-          <li className="pure-menu-item pure-menu-selected">
-            {!sessionUser && (
-              <>
-                <LoginFormModal className="pure-menu-link" />
-                <SignupFormModal className="pure-menu-link" />
-              </>
-            )}
-          </li>
+        </li>
+        <li className="pure-menu-item pure-menu-selected pure-menu-has-children pure-menu-allow-hover">
+          {sessionUser && <ProfileButton user={sessionUser} />}
+        </li>
+        <li className="pure-menu-item">
+          {sessionUser && (
+            <NavLink id="button" className="pure-menu-link" to="/upload">
+              Upload
+            </NavLink>
+          )}
+        </li>
+        <li className="pure-menu-item">{!sessionUser && <LoginFormModal />}</li>
+        <li className="pure-menu-item">
+          {!sessionUser && <SignupFormModal />}
         </li>
       </ul>
     </div>
   );
 }
 
-export default Navigation
+export default Navigation;

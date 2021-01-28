@@ -8,6 +8,7 @@ function SignupFormModal() {
   return (
     <>
       <button
+        id='button'
         className="button pure-button"
         onClick={() => setShowModal(true)}
       >

@@ -1,0 +1,32 @@
+#splash-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #020000;
+    z-index: -10;
+}
+
+#splash-title{
+    position: absolute;
+    z-index: 5;
+    margin-top: 0%;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #299626;
+}
+
+#main{
+    position: absolute;
+    margin-left: 100%;
+}
+#splash-deets{
+    background-color: #979797;
+    color: #333333;
+    max-height: 325px;
+    border-bottom: solid 3px #ff5500;
+}
+p{
+    padding: 15px;
+    text-shadow: 1px 1px 1px #ff5500;
+
+}

@@ -3,6 +3,7 @@ import { fetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+
 // Action creators
 const setUser = (user) => {
   // sets session state to current user
@@ -17,6 +18,7 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
 export const login = (user) => async (dispatch) => {
   // login thunk, sets user session from response
   const { credential, password } = user;
@@ -56,7 +58,7 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
   return res;
 };
-const initialState = { user: null };
+const initialState = { user: {} };
 
 export default function sessionReducer(state = initialState, action) {
   let newState;
@@ -67,7 +69,7 @@ export default function sessionReducer(state = initialState, action) {
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state);
-      newState.user = null;
+      newState.user = {};
       return newState;
     default:
       return state;

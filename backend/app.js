@@ -4,6 +4,7 @@ const cors = require("cors");
 const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const routes = require("./routes");
 
 // Create a variable called isProduction that will be true if the environment
@@ -16,7 +17,8 @@ const isProduction = environment === "production";
 const app = express();
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Security Middleware
 if (!isProduction) {

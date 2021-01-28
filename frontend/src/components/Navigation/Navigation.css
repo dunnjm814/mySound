@@ -1,8 +1,36 @@
-.button{
+#nav-bar{
+  background-color: #333333;
+}
+#home{
+  padding:0;
+  border: 2px solid, #ff5500
+}
+#home:hover{
+  background-color: rgb(14, 13, 13);
+}
+#button{
   background-color: #ff5500;
   color: #fff;
   cursor: pointer;
+  outline: none;
 }
-.button:hover{
+#button:hover{
   background-color: #e76f34;
+}
+#dropdown{
+  text-decoration: none;
+  list-style-type: none;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 5px;
+  box-shadow: 1px 2px 2px #f50;
+}
+#dropdown > li{
+  padding: 3px;
+}
+#profLink{
+  text-decoration: none;
+}
+.logout{
+  padding: 3px;
 }

@@ -20,31 +20,36 @@ function LoginFormPage() {
     });
   };
   return (
-    <form className="pure-form pure-form-stacked login-form" onSubmit={onSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <input
-        className="credInput"
-        placeholder="Username or Email"
-        type="text"
-        value={credential}
-        onChange={(e) => setCredential(e.target.value)}
-        required
-      />
-      <input
-        placeholder="enter password"
-        className="passInput"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button className="submit pure-button pure-button-primary" type="submit">
-        Log In
-      </button>
+    <form className='login-form' onSubmit={onSubmit}>
+      <div className='errors'>
+        <ul>
+          {errors.map((error, idx) => (
+            <li className='errorItem' key={idx}>{error}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="pure-form pure-form-stacked login-form" >
+        <input
+          className="credInput"
+          placeholder="Username or Email"
+          type="text"
+          value={credential}
+          onChange={(e) => setCredential(e.target.value)}
+          required
+        />
+        <input
+          placeholder="enter password"
+          className="passInput"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button id='submit' className="pure-button pure-button-primary" type="submit">
+          Log In
+        </button>
+
+    </div>
     </form>
   );
 }

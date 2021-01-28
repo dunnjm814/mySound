@@ -1,12 +1,20 @@
 
 .login-form{
   margin: auto;
+  max-width: 215px;
 }
-.submit{
+.errors{
+  overflow-wrap: normal;
+}
+.errorItem{
+
+  color: rgb(207, 4, 4);
+}
+#submit{
   background-color: #ff5500;
   color: #fff;
   cursor: pointer;
 }
-.submit:hover{
+#submit:hover{
   background-color: #e76f34;
 }

@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session'
+import profileReducer from './profileView'
 
 
 let enhancer;
@@ -18,7 +19,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const rootReducer = combineReducers({
-  session: sessionReducer
+  session: sessionReducer,
+  profile: profileReducer
 });
 
 const configureStore = (preloadedState) => {

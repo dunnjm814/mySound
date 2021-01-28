@@ -26,7 +26,7 @@ export function Modal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" style={{ border: "5px" }} onClick={onClose} />
-      <div id="modal-content" className="pure-g" style={{padding: '15px'}}>
+      <div id="modal-content"  style={{padding: '15px'}}>
         {children}
       </div>
     </div>,
