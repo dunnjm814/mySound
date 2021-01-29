@@ -15,12 +15,22 @@
   padding: 10px;
 
 }
+#prof-pic-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #prof-pic{
   max-width: 75px;
   max-height: 75px;
   border-radius: 50%;
   position: relative;
   padding: 20px;
+}
+#prof-pic-drag{
+  position: absolute;
+  opacity: .5;
+  margin-left: -10%;
 }
 #upload{
   position: absolute;

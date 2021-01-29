@@ -12,6 +12,7 @@ router.get(
     const profile = User.findOne({
       where: { username }
     })
+    console.log('in username.js api', profile)
     return res.json({profile})
   })
 )

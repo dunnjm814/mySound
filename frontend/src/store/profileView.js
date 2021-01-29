@@ -1,28 +1,32 @@
 import { fetch } from "./csrf";
+import {useDispatch} from 'react-redux'
 
-const GET_PROFILE = "session/getProfile";
+const GET_PROFILE = "profileView/getProfile";
+
 
 const getProfile = (username) => {
+  console.log('inside action creator', username)
   return {
     type: GET_PROFILE,
     payload: username,
   };
 };
+
 export const getArtistProfile = (username) => async (dispatch) => {
+  console.log('inside thunk', username)
   const res = await fetch(`/api/${username}`);
-  dispatch(getProfile(res.profile));
+  console.log('inside thunk',res)
+  dispatch(getProfile(res.data.profile));
   return res;
 };
 
-const initialState = { username: null };
+const initialState = {};
 
 export default function profileReducer(state = initialState, action) {
-  let newState;
+
   switch (action.type) {
     case GET_PROFILE:
-      newState = Object.assign({}, state)
-      newState.username = action.payload;
-      return newState
+      return action.payload;
     default:
       return state
   }

@@ -32,7 +32,7 @@ function ProfileButton({ user }) {
   };
   let profPic
     if (!user.profilePic) {
-      profPic = "img/anon.jpeg"
+      profPic = "/img/anon.jpeg"
     } else {
       profPic = user.profilePic;
     }
@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
         style={{maxHeight: '34.3px'}}
       >
         <img
-          src={`/${profPic}`}
+          src={`${profPic}`}
           alt='profpic'
           style={{
             height: "20px",
