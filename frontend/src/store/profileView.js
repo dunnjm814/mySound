@@ -1,8 +1,6 @@
 import { fetch } from "./csrf";
-import {useDispatch} from 'react-redux'
 
 const GET_PROFILE = "profileView/getProfile";
-
 
 const getProfile = (username) => {
   console.log('inside action creator', username)
@@ -14,7 +12,7 @@ const getProfile = (username) => {
 
 export const getArtistProfile = (username) => async (dispatch) => {
   console.log('inside thunk', username)
-  const res = await fetch(`/api/${username}`);
+  const res = await fetch(`/api/username/${username}`);
   console.log('inside thunk',res)
   dispatch(getProfile(res.data.profile));
   return res;

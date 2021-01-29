@@ -7,17 +7,17 @@ import getArtistProfile from '../../store/profileView'
 function ElseProfView() {
   const { username } = useParams()
   let dispatch = useDispatch()
+  dispatch(getArtistProfile(username));
   console.log(username)
-  const profile = useSelector((state) => state.username)
-  const [artist, setArtist] = useState(profile)
-  console.log(username)
+  const [artist, setArtist] = useState()
+  const profile = useSelector((state) => state.profile.username)
+  console.log(profile)
+
 
   useEffect(() => {
-    let test = dispatch(getArtistProfile(username));
-    setArtist(test)
-    console.log(test)
+    setArtist(profile)
   }, [username]);
-  setArtist(artist)
+
   console.log(artist)
   let profPic;
   if (!artist.profilePic) {

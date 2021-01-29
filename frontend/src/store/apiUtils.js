@@ -23,8 +23,8 @@ export const putProfPicAWS = (formData) => async (dispatch) => {
     if (!res.ok) throw res;
     const data = await res.data
     console.log(data)
-    dispatch(updateProfPic(res.data.formData));
-    return res.data.formData
+    dispatch(updateProfPic(res.data.newProfPic));
+    return res.data.newProfPic
   } catch (e) {
     console.error(e)
   }

@@ -1,7 +1,9 @@
 import './Upload.css'
-import {useMemo} from 'react'
-import {useDropzone} from "react-dropzone";
-import request from "superagent";
+import {useMemo, useState} from 'react'
+import { useDropzone } from "react-dropzone";
+import UploadModal from './UploadModal';
+
+
 
 const baseStyle = {
   flex: 1,
@@ -32,16 +34,24 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
+
 function StyledDropzone(props) {
+  const [track, setTrack] = useState([])
   const {
-    acceptedFiles,
     getRootProps,
     getInputProps,
     isDragActive,
     isDragAccept,
     isDragReject,
-  } = useDropzone({ accept: "audio/*" });
-
+  } = useDropzone({
+    accept: "audio/*",
+    onDrop: (acceptedFiles) => {
+      setTrack(
+        [...acceptedFiles]
+      )
+    }
+  });
+  console.log(track)
   const style = useMemo(
     () => ({
       ...baseStyle,
@@ -52,18 +62,15 @@ function StyledDropzone(props) {
     [isDragActive, isDragReject, isDragAccept]
   );
 
-  const track = acceptedFiles.map(file => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ))
+  //
+
   return (
     <div className="container">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop a track or audio clip</p>
       </div>
-      <ul>{track}</ul>
+      {/* <ul>{track}</ul> */}
     </div>
   );
 }
@@ -74,18 +81,19 @@ function Upload() {
         <div id="upload-main-wrap">
           <div id="upload-main">
             <h1>upload a track</h1>
-            <div className="upload-container">
-              <StyledDropzone />
+            <div className="upload-container" style={{ position: "relative" }}>
+              <StyledDropzone >
+                <UploadModal  />
+              </StyledDropzone>
+            </div>
+            <div id="upload-preview-container" style={{ position: "absolute" }}>
+              <h1>
+                Coming soon! <br /> Track preview!
+              </h1>
+              <div></div>
             </div>
           </div>
-          <div id='upload-preview-container'>
-            <h1>Coming soon! <br /> Track preview!</h1>
-            <form>
-              
-            </form>
-          </div>
         </div>
-
       </>
     );
 }

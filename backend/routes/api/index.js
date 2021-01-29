@@ -8,7 +8,7 @@ router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 
-router.use('/:username', userPageRouter)
+router.use('/username', userPageRouter)
 
 router.use('/aws', awsRouter)
 
