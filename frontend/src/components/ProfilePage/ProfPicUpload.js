@@ -17,7 +17,7 @@ function ProfilePicUpload({userId}) {
     const formData = new FormData()
     formData.append('file', upload)
     formData.append('userId', userId)
-    console.log('form data', formData.get('file'))
+    
     await dispatch(putProfPicAWS(formData))
   }
   return (

@@ -13,7 +13,7 @@ function CurrentUser() {
   const [hidden, setHidden] = useState('')
   const [avatar, setPic] = useState(profilePic ? profilePic : sessionUser.profilePic)
   let user = sessionUser
-  console.log(avatar)
+  
   let pic = avatar|| sessionUser.profilePic;
   useEffect(() => {
     dispatch(sessionActions.restore())
@@ -34,7 +34,7 @@ function CurrentUser() {
           <div id="prof-pic-wrap">
             <img
               id="prof-pic"
-              
+
               src={`${sessionUser.profilePic}`}
             />
             {/* <input id='upload' className={hidden} type='file' value={profImgUp} onChange={updateFile}></input> */}

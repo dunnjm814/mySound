@@ -9,13 +9,11 @@ router.get(
   '/:username',
   asyncHandler(async (req, res) => {
     const { username } = req.params
-    console.log(username)
-    console.log(req)
 
     const profile = User.findOne({
       where: { username }
     })
-    console.log('in username.js api', profile)
+
     return res.json({profile})
   })
 )

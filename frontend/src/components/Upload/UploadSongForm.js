@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-// import { Upload, message, Button } from "antd";
-// import { UploadOutlined } from "@ant-design/icons";
 import * as apiRouting from "../../store/apiUtils";
 
 function UploadSongForm({track}) {

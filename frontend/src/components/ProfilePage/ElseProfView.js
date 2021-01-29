@@ -8,17 +8,17 @@ function ElseProfView() {
   const { username } = useParams()
   let dispatch = useDispatch()
   dispatch(getArtistProfile(username));
-  console.log(username)
+
   const [artist, setArtist] = useState()
   const profile = useSelector((state) => state.profile.username)
-  console.log(profile)
+
 
 
   useEffect(() => {
     setArtist(profile)
   }, [username]);
 
-  console.log(artist)
+
   let profPic;
   if (!artist.profilePic) {
     profPic = "/img/anon.jpeg";

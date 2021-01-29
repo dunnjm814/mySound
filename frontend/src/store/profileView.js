@@ -3,7 +3,7 @@ import { fetch } from "./csrf";
 const GET_PROFILE = "profileView/getProfile";
 
 const getProfile = (username) => {
-  console.log('inside action creator', username)
+  
   return {
     type: GET_PROFILE,
     payload: username,
@@ -11,9 +11,9 @@ const getProfile = (username) => {
 };
 
 export const getArtistProfile = (username) => async (dispatch) => {
-  console.log('inside thunk', username)
+
   const res = await fetch(`/api/username/${username}`);
-  console.log('inside thunk',res)
+
   dispatch(getProfile(res.data.profile));
   return res;
 };
