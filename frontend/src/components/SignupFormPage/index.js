@@ -13,10 +13,10 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [profImg, setProfImg] = useState("");
+  const [profImg, setProfImg] = useState(null);
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/home" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const onSubmit = (e) => {
     e.preventDefault();
