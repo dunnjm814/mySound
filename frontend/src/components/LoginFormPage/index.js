@@ -11,13 +11,14 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (user) return <Redirect to="/home"/>;
+  if (user) return <Redirect to="/"/>;
   const onSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(login({ credential, password })).catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     });
+
   };
   return (
     <form className='login-form' onSubmit={onSubmit}>

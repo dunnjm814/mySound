@@ -46,8 +46,8 @@
 #page-body{
   display: flex;
   flex-direction: row;
-  width: 80%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   align-content: center;
 }
 #artist-info{
@@ -55,17 +55,18 @@
   border: solid 1px black;
   background-color:#e3fffd;
   height: 100%;
-  width: 25%;
+  width: 20%;
 }
 #info-wrap{
   padding: 10px;
 }
 #artist-tracks{
-  height: 100%;
-  width: 90%;
+  height: 70.5%;
+  width: 75%;
 
 }
 #construction1{
   position:relative;
-  width:80%
+  width: 100%;
+  height: 100%;
 }

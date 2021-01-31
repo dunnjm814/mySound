@@ -14,6 +14,7 @@ function App({style}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+  
   useEffect(() => {
     dispatch(sessionActions.restore()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -22,9 +23,9 @@ function App({style}) {
     <div style={style}>
       <Navigation isLoaded={isLoaded} />
       {!sessionUser && <Splash exact path='/'/>}
-      {isLoaded && (
+      {sessionUser && (
         <Switch>
-          <Route exact path="/home">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/user/:username">
@@ -38,9 +39,9 @@ function App({style}) {
           </Switch>
       )}
       </div>
-      <footer>
+      <footer style={{bottom: 0, position: 'fixed' ,width:"100%"}}>
 
-    <FooterNav /> 
+    <FooterNav />
       </footer>
   </>
   );

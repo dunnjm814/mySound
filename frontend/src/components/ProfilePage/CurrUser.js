@@ -21,7 +21,7 @@ function CurrentUser() {
     if (!pic) {
       pic = "/img/anon.jpeg";
     }
-  }, [profilePic])
+  }, [dispatch, profilePic])
   // function handleUpload(e) {
   //   setUpload(e.target.files[0])
   // }
