@@ -8,6 +8,7 @@ import Upload from "./components/Upload/Upload";
 import Splash from "./components/Splash";
 import FooterNav from "./components/FooterNav";
 
+
 function App({style}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -15,7 +16,6 @@ function App({style}) {
   useEffect(() => {
     dispatch(sessionActions.restore()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  console.log(isLoaded)
   return (
   <>
     <div style={style}>

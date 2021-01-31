@@ -30,7 +30,7 @@ function UploadSongForm({track}) {
     setPublic('public')
   }
   if (track) {
-    setSong(track)
+    setSong(track[0].path)
   }
   const updateArt = (e) => {
     const art = e.target.files[0];

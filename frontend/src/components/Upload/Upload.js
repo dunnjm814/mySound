@@ -1,9 +1,8 @@
 import './Upload.css'
-import {useMemo, useState} from 'react'
+import {useEffect, useMemo, useState, useRef} from 'react'
 import { useDropzone } from "react-dropzone";
 import UploadModal from './UploadModal';
-
-
+import ReactPlayer from "react-player";
 
 const baseStyle = {
   flex: 1,
@@ -36,8 +35,11 @@ const rejectStyle = {
 
 
 function StyledDropzone(props) {
-  const [track, setTrack] = useState([])
+  const [file, setFile] = useState([])
+  console.log("####",file)
+
   const {
+
     getRootProps,
     getInputProps,
     isDragActive,
@@ -46,55 +48,64 @@ function StyledDropzone(props) {
   } = useDropzone({
     accept: "audio/*",
     onDrop: (acceptedFiles) => {
-      setTrack(
+      setFile(
         [...acceptedFiles]
-      )
+        )
+      }
+    });
+
+    const style = useMemo(
+      () => ({
+        ...baseStyle,
+        ...(isDragActive ? activeStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {}),
+      }),
+      [isDragActive, isDragReject, isDragAccept]
+      );
+
+      //
+  const [track, setTrack] = useState(null)
+
+  console.log('!!!!!!!!!!!',track)
+  useEffect(() => {
+    if (file.length) {
+      let temp = file[0]
+      let temp2 = temp.path
+      console.log("$$$$",temp)
+      setTrack(temp2)
     }
-  });
-  console.log(track)
-  const style = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isDragActive ? activeStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isDragActive, isDragReject, isDragAccept]
-  );
-
-  //
-
-  return (
-    <div className="container">
-      <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop a track or audio clip</p>
-      </div>
-      {/* <ul>{track}</ul> */}
-    </div>
-  );
+  },[file])
+      return (
+        <div className="container">
+          {/* {track.length && <UploadModal track={track} />} */}
+          <div {...getRootProps({ style })}>
+            <input {...getInputProps()} />
+            <p>Drag 'n' drop a track or audio clip</p>
+          </div>
+          {/* <ul>{track}</ul> */}
+          <div id="upload-preview-container">
+            {track && (
+              <ReactPlayer url={track} width='400px' height='50px' playing={false} controls={true} />
+            )}
+          </div>
+        </div>
+      );
 }
 
 function Upload() {
     return (
-      <>
+
         <div id="upload-main-wrap">
           <div id="upload-main">
             <h1>upload a track</h1>
             <div className="upload-container" style={{ position: "relative" }}>
               <StyledDropzone >
-                <UploadModal  />
               </StyledDropzone>
-            </div>
-            <div id="upload-preview-container" style={{ position: "absolute" }}>
-              <h1>
-                Coming soon! <br /> Track preview!
-              </h1>
-              <div></div>
             </div>
           </div>
         </div>
-      </>
+
     );
 }
 

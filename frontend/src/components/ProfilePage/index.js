@@ -14,12 +14,13 @@ function ProfilePage() {
 
   }, [sessionUser])
   if (!sessionUser) {
-    <Redirect to="/" />;
+    return <Redirect to="/" />;
   }
   return (
     <>
       {sessionUser && sessionUser.username === username ?
-        <CurrentUser /> :
+      <CurrentUser />
+        :
         <ElseProfView />
       }
     </>

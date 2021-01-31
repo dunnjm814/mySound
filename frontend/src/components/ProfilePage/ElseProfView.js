@@ -2,40 +2,45 @@ import { useParams } from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './Page.css'
-import getArtistProfile from '../../store/profileView'
+import * as profileActions from '../../store/profileView'
 
 function ElseProfView() {
-  const { username } = useParams()
-  let dispatch = useDispatch()
-  dispatch(getArtistProfile(username));
+  const { username } = useParams();
+  console.log(username); // Demo-lition
+  const [artist, setArtist] = useState();
+  const profile = useSelector((state) => state.profile);
+  let dispatch = useDispatch();
+  console.log(profile);
+  /* {id: 1,
+    username: "Demo-lition",
+    profilePic: "img/anon.jpeg",
+    bannerPic: "",
+    description: null} */
 
-  const [artist, setArtist] = useState()
-  const profile = useSelector((state) => state.profile.username)
+    console.log(profile.profilePic); // img/anon.jpeg
+    console.log("()()()()()()", artist); // {profile:null}
 
+    useEffect(() => {
+      dispatch(profileActions.getArtistProfile(username));
+      setArtist(profile);
+    }, [dispatch, username]);
+    console.log("()()()()()()", artist); // {profile:null}
+    let profPic
+    if (profile.profilePic) {
+      profPic = profile.profilePic;
+    } else {
+      profPic = "/img/anon.jpeg";
+    }
 
-
-  useEffect(() => {
-    setArtist(profile)
-  }, [username]);
-
-
-  let profPic;
-  if (!artist.profilePic) {
-    profPic = "/img/anon.jpeg";
-  } else {
-    profPic = artist.profilePic;
-  }
   return (
     <div id="page-wrap">
       <div id="header-wrap">
         <div id="header-container">
           <div id="prof-pic-wrap">
-            <img
-              id="prof-pic"
-              src={`${profPic}`}
-            />
+            {/* <img id="anon-pic" src={"/img/anon.jpeg"} alt=" anon profile img" /> */}
+            <img id="prof-pic" src={`${profPic}`} alt="profile img" />
           </div>
-          <h1>{artist.username}</h1>
+          <h1>{profile.username}</h1>
         </div>
       </div>
       <div id="body">

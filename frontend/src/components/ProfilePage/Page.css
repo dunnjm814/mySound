@@ -20,12 +20,13 @@
   justify-content: center;
 }
 #prof-pic{
-  max-width: 75px;
-  max-height: 75px;
+  max-width: 6em;
+  max-height: 6em;
   border-radius: 50%;
   position: relative;
   padding: 20px;
 }
+
 #prof-pic-drag{
   position: absolute;
   opacity: .5;
