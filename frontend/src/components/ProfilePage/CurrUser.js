@@ -13,7 +13,7 @@ function CurrentUser() {
   const [hidden, setHidden] = useState('')
   const [avatar, setPic] = useState(profilePic ? profilePic : sessionUser.profilePic)
   let user = sessionUser
-  
+
   let pic = avatar|| sessionUser.profilePic;
   useEffect(() => {
     dispatch(sessionActions.restore())
@@ -27,16 +27,13 @@ function CurrentUser() {
   // }
   return (
     <div id="page-wrap">
-      <div id="header-wrap"
+      <div
+        id="header-wrap"
         // style={{ backgroundImage: banner  }}
       >
         <div id="header-container">
           <div id="prof-pic-wrap">
-            <img
-              id="prof-pic"
-
-              src={`${sessionUser.profilePic}`}
-            />
+            <img id="prof-pic" src={`${sessionUser.profilePic}`} />
             {/* <input id='upload' className={hidden} type='file' value={profImgUp} onChange={updateFile}></input> */}
             <div id="prof-pic-drag" className={hidden}>
               <ProfilePicUpload userId={sessionUser.id} />
@@ -44,7 +41,7 @@ function CurrentUser() {
           </div>
           <h1>{user.username}</h1>
         </div>
-            {/* <form id="banner-input"
+        {/* <form id="banner-input"
               // onSubmit={handleSubmit}
             >
               <input type='file' style={{}}
@@ -54,9 +51,19 @@ function CurrentUser() {
               </input>
             </form> */}
       </div>
-      <div id="body">
-        <div id="artist-info"></div>
-        <div id="artist-tracks"></div>
+      <div id="page-body">
+        <div id="artist-info">
+          <div id="info-wrap">
+            <h4> about me: </h4>
+            <br />
+            <p id="description">hello thank you for visiting</p>
+          </div>
+        </div>
+        <div id="artist-tracks-wrap">
+          <div id="artist-tracks">
+            <img id="construction1" src="/img/underconstruction2.jpg" />
+          </div>
+        </div>
       </div>
     </div>
   );

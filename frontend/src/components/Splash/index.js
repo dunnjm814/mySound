@@ -2,9 +2,6 @@ import {useState, useEffect} from 'react'
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import {Gif} from '@giphy/react-components'
 import './Splash.css'
-// import { useAsync } from "react-async-hook";
-
-
 
 function Splash() {
   const key = `${process.env.REACT_APP_GIPHY_API_KEY}`;
@@ -14,7 +11,7 @@ function Splash() {
     (async () => {
 
       const { data } = await gf.gif("LQv4IGmdZAF7TmMJEa");
-      console.log("async", data);
+
       setGif(data)
       return data;
     })()

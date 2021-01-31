@@ -7,6 +7,7 @@ import ProfilePage from "./components/ProfilePage";
 import Upload from "./components/Upload/Upload";
 import Splash from "./components/Splash";
 import FooterNav from "./components/FooterNav";
+import Home from "./components/Home";
 
 
 function App({style}) {
@@ -20,10 +21,12 @@ function App({style}) {
   <>
     <div style={style}>
       <Navigation isLoaded={isLoaded} />
-      {!sessionUser && <Splash />}
+      {!sessionUser && <Splash exact path='/'/>}
       {isLoaded && (
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
           <Route path="/user/:username">
             <ProfilePage sessionUser={sessionUser} />
           </Route>
@@ -32,15 +35,13 @@ function App({style}) {
               <Upload />
             </div>
           </Route>
-          <Route path="/">
-            <h1>404 boiiii</h1>
-          </Route>
           </Switch>
       )}
-    </div>
-      <footer style={{marginBottom: "0"}}>
-        <FooterNav />
-    </footer>
+      </div>
+      <footer>
+
+    <FooterNav /> 
+      </footer>
   </>
   );
 }

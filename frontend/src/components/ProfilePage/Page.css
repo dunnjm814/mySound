@@ -43,14 +43,29 @@
 .hidden{
   display: none;
 }
-#body{
+#page-body{
   display: flex;
   flex-direction: row;
+  width: 80%;
+  height: 90%;
+  align-content: center;
 }
 #artist-info{
-  background-color: lawngreen;
-  height: 50px;
+  margin-left: 5%;
+  border: solid 1px black;
+  background-color:#e3fffd;
+  height: 100%;
+  width: 25%;
+}
+#info-wrap{
+  padding: 10px;
 }
 #artist-tracks{
-  background-color: lightseagreen;
+  height: 100%;
+  width: 90%;
+
+}
+#construction1{
+  position:relative;
+  width:80%
 }

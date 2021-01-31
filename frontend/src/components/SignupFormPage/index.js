@@ -16,7 +16,7 @@ function SignupFormPage() {
   const [profImg, setProfImg] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   const onSubmit = (e) => {
     e.preventDefault();

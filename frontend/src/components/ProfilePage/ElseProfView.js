@@ -6,25 +6,16 @@ import * as profileActions from '../../store/profileView'
 
 function ElseProfView() {
   const { username } = useParams();
-  console.log(username); // Demo-lition
+
   const [artist, setArtist] = useState();
   const profile = useSelector((state) => state.profile);
   let dispatch = useDispatch();
-  console.log(profile);
-  /* {id: 1,
-    username: "Demo-lition",
-    profilePic: "img/anon.jpeg",
-    bannerPic: "",
-    description: null} */
-
-    console.log(profile.profilePic); // img/anon.jpeg
-    console.log("()()()()()()", artist); // {profile:null}
 
     useEffect(() => {
       dispatch(profileActions.getArtistProfile(username));
       setArtist(profile);
     }, [dispatch, username]);
-    console.log("()()()()()()", artist); // {profile:null}
+
     let profPic
     if (profile.profilePic) {
       profPic = profile.profilePic;
@@ -37,15 +28,26 @@ function ElseProfView() {
       <div id="header-wrap">
         <div id="header-container">
           <div id="prof-pic-wrap">
-            {/* <img id="anon-pic" src={"/img/anon.jpeg"} alt=" anon profile img" /> */}
             <img id="prof-pic" src={`${profPic}`} alt="profile img" />
           </div>
           <h1>{profile.username}</h1>
         </div>
       </div>
-      <div id="body">
-        <div id="artist-info"></div>
-        <div id="artist-tracks"></div>
+      <div id="page-body">
+        <div id="artist-info">
+          <div id='info-wrap'>
+            <h4> about me: </h4><br />
+            <p id='description'>
+              hello thank you for visiting
+            </p>
+
+          </div>
+        </div>
+        <div id='artist-tracks-wrap'>
+          <div id="artist-tracks">
+            <img id='construction1' src='/img/underconstruction1.jpg'/>
+          </div>
+        </div>
       </div>
     </div>
   );
