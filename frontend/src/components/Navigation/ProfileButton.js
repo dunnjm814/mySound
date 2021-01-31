@@ -43,19 +43,21 @@ function ProfileButton({ user }) {
         id="button"
         className="profile-dropdown pure-menu-list pure-menu-link pure-button"
         onClick={openMenu}
-        style={{maxHeight: '34.3px'}}
+        style={{maxHeight: '34.3px', display: 'flex', flexDirection: 'row', alignItems:'center'}}
       >
         <img
           src={`${profPic}`}
           alt='profpic'
           style={{
-            height: "20px",
-            width: "20px",
+            height: "25px",
+            width: "25px",
             borderRadius: "50%",
             padding: "2px"
           }}
         />
+        <h4 style={{margin: 0, marginLeft:'3px', padding: '5px'} }>
         {user.username}
+        </h4>
       </button>
       {showMenu && (
         <ul id="dropdown" className="profile-dropdown pure-menu-children">
