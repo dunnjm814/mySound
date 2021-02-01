@@ -2,6 +2,7 @@ import Upload from "../components/Upload/Upload";
 import { fetch } from "./csrf";
 
 const UPDATE_PROF_PIC = "profileView/updateProfPic";
+const UPDATE_BANNER_PIC = "profileView/updateBannerPic"
 
 const updateProfPic = (updatedProfPic) => {
   return {
@@ -9,6 +10,12 @@ const updateProfPic = (updatedProfPic) => {
     payload: updatedProfPic,
   };
 };
+const updateBanPic = (updatedBanPic) => {
+  return {
+    type: UPDATE_BANNER_PIC,
+    payload: updatedBanPic
+  }
+}
 
 export const putProfPicAWS = (formData) => async (dispatch) => {
   try {
@@ -21,7 +28,6 @@ export const putProfPicAWS = (formData) => async (dispatch) => {
       body: formData,
     });
     if (!res.ok) throw res;
-    const data = await res.data
     
     dispatch(updateProfPic(res.data.newProfPic));
     return res.data.newProfPic
@@ -29,6 +35,24 @@ export const putProfPicAWS = (formData) => async (dispatch) => {
     console.error(e)
   }
 };
+
+export const putBanner = (formData) => async (dispatch) => {
+  try {
+    let res = await fetch("/api/aws/bannerPicUpload", {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      method: "PUT",
+      body: formData,
+    });
+    if (!res.ok) throw res;
+
+    dispatch(updateBanPic(res.data.newBanPic))
+    return res.data.newBanPic
+  } catch (e) {
+    console.error(e)
+  }
+}
 
 const initialState = {
   updatedProfPic: null,
@@ -42,6 +66,10 @@ const apiReducer = (state = initialState, action) => {
     case UPDATE_PROF_PIC:
       newState = Object.assign({}, state)
       newState.updatedProfPic = action.payload
+      return newState
+    case UPDATE_BANNER_PIC:
+      newState = Object.assign({}, state)
+      newState.updatedBannerPic = action.payload
       return newState
     default:
       return state
