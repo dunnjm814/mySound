@@ -61,12 +61,11 @@
   padding: 10px;
 }
 #artist-tracks{
-  height: 70.5%;
-  width: 75%;
+  height: 100%;
+  width: 90%;
 
 }
 #construction1{
-  position:relative;
   width: 100%;
   height: 100%;
 }

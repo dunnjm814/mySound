@@ -20,4 +20,17 @@ router.put(
     return res.json({ newProfPic });
   })
 );
+
+router.put(
+  '/bannerPicUpload',
+  singleMulterUpload('file'),
+  asyncHandler(async (req, res) => {
+    const { userId } = req.body
+    const banPic = await singlePublicFileUpload(req.file)
+    const bannerUser = await User.findByPk(userId)
+    const newBanPic = await bannerUser.update({ bannerPic: banPic })
+
+    return res.json({newBanPic})
+  })
+)
 module.exports = router
